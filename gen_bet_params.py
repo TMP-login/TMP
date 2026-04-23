@@ -5,18 +5,19 @@ from __future__ import annotations
 
 import json
 import pathlib
+import re
 from typing import Any, Dict, List
 
 # bet_mode 选项映射
 BET_MODE_OPTIONS = {
-    "1": ("OneYuan", "1元"),
-    "2": ("OneJiao", "1角"),
-    "3": ("OneFen", "1分"),
-    "4": ("OneLi", "1厘"),
-    "5": ("TwoYuan", "2元"),
-    "6": ("TwoJiao", "2角"),
-    "7": ("TwoFen", "2分"),
-    "8": ("TwoLi", "2厘"),
+    "1": ("TwoYuan", "2元"),
+    "2": ("TwoJiao", "2角"),
+    "3": ("TwoFen", "2分"),
+    "4": ("TwoLi", "2厘"),
+    "5": ("OneYuan", "1元"),
+    "6": ("OneJiao", "1角"),
+    "7": ("OneFen", "1分"),
+    "8": ("OneLi", "1厘"),
 }
 
 
@@ -24,22 +25,21 @@ def get_position_numbers(position: int) -> List[str]:
     """交互式获取某个位置选择的数字（0-9）。"""
     while True:
         inp = input(
-            f"第{position}位 选择的数字（0-9，多个用逗号分隔，留空跳过）: "
+            f"第{position}位 选择的数字（可输入任意字符，系统会提取其中的 0-9，留空跳过）: "
         ).strip()
         if not inp:
             return []
 
-        nums = [n.strip() for n in inp.split(",")]
+        nums = sorted(set(re.findall(r"[0-9]", inp)))
 
-        # 验证输入
-        if not all(n in "0123456789" for n in nums):
-            print("  ❌ 输入有误，请只输入 0-9 的数字")
+        if not nums:
+            print("  ❌ 没有提取到任何数字，请至少输入 0-9 中的一个数字")
             continue
         if len(nums) > 9:
             print("  ❌ 每位最多选择 9 个数字")
             continue
 
-        print(f"  ✓ 已选择: {', '.join(nums)}")
+        print(f"  ✓ 已选择（去重并排序后）: {', '.join(nums)}")
         return nums
 
 
