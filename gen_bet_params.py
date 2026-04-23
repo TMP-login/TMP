@@ -6,6 +6,8 @@ from __future__ import annotations
 import json
 import pathlib
 import re
+import subprocess
+import sys
 from typing import Any, Dict, List
 
 # bet_mode 选项映射
@@ -142,6 +144,15 @@ def main() -> int:
     print(f"\n✓ 参数已保存到: {output_file}")
     print(f"\n你可以在 bet.py 中使用这个文件，或通过以下方式查看:")
     print(f"  python -m json.tool {output_file}")
+
+    choice = input("\n是否立即投注？输入 y 回车立即调用 bet.py，其他输入或直接回车则退出: ").strip().lower()
+    if choice == "y":
+        print("\n正在调用 bet.py ...")
+        bet_script = pathlib.Path(__file__).with_name("bet.py")
+        result = subprocess.run([sys.executable, str(bet_script)])
+        raise SystemExit(result.returncode)
+
+    print("\n已退出，不执行立即投注。")
 
     return 0
 
