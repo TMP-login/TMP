@@ -1,0 +1,40 @@
+{
+  "id": 206076,
+  "user_account": "guajiyingli002",
+  "user_email": null,
+  "user_name": "曹雅利",
+  "user_avatar": "https://picture.oklgs.com/uploads/big/0e5dda9e1d2ff5bad194326e41d2fee0.jpg",
+  "user_nickname": "我的昵称",
+  "is_beta": false,
+  "mobile_number": "",
+  "is_bind_google_code": false,
+  "is_set_hand_lock": false,
+  "hand_lock_active": false,
+  "has_bind_bank_card": true,
+  "is_proxy": false,
+  "has_set_balance_password": true,
+  "has_bound_telegram": false,
+  "create_time": "2024-05-30 10:17:06",
+  "recharge_has_bind_bank_card": true,
+  "user_setting": {
+    "index_guide": true,
+    "__typename": "UserSetting"
+  },
+  "first_bank_card": "**************8157",
+  "user_red_line": "Enum0",
+  "proxy_level": 5,
+  "user_safe_question_info": {
+    "is_setting_completed": false,
+    "__typename": "UserSafeQuestionInfo"
+  },
+  "user_safe_question": {
+    "question_id": null,
+    "__typename": "UserSafeQuestion"
+  },
+  "financial": {
+    "has_bind_cryptocurrency_non_cny": true,
+    "__typename": "Financial"
+  },
+  "dual_mode": "Enum0",
+  "__typename": "User"
+}
